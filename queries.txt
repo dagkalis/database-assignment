@@ -17,6 +17,65 @@ select * from customer_phones;
 
 insert into customer_phones (customer_id, phone) values (1, 'customer_second_phone');
 
-select * from sale
+select * from sale;
+
+select * from item;
+
+select * from purchase;
+
+select * from supplier;
+
+insert into supplier (lname, postal_code, city, area, street, street_number) values ('thunderSupplier', '54358', 'thesss', 'toympa', 'ypatias', '8j88');
+
+
+insert into purchase (item_id, supplier_id, employee_id, date, quantity, item_price, total_price) values (1, 1, 1, '2020-05-10', 8, 2, 8 );
+
+select i.short_descr, s.lname, e.lname, e.fname from purchase p, item i, supplier s, employee e
+where p.item_id = i.id
+and p.supplier_id = s.id
+and e.id = p.employee_id;
+
+select * from employee;
+
+select * from employee where fname like '%T%';
+
+select * from item;
+
+insert into item (short_descr, long_descr, category, sale_price, purchase_price, quantity) values ('thunder_itemTheSecond', 'thunder_itemTheSecond', 'thunderItemCategory',8 , 15,  20);
+
+select sum(sale_price), sum(purchase_price) from item;
+
+select * from supplier;
+
+select * from item;
+
+select s.id, s.lname from supplier s, purchase p, item i
+where s.id = p.supplier_id
+and p.item_id = i.id
+and i.category like '';
+
+select * from sale;
+
+select * from customer;
+
+insert into customer (lname, postal_code, city, area, street, street_number) values ('thunderCustomerTheSecond', '54352', 'thesss', 'toympa', 'ypatias', '82');
+insert into customer (lname, postal_code, city, area, street, street_number) values ('thunderCustomerTheThird', '54352', 'thesss', 'toympa', 'ypatias', '82');
+insert into customer (lname, postal_code, city, area, street, street_number) values ('thunderCustomerTheFourth', '54352', 'thesss', 'toympa', 'ypatias', '82');
+
+update customer 
+set lname = 'thunderCustomerThefirst'
+where lname = 'thunderCustomer';
+
+select * from sale;
+
+insert into sale (item_id, customer_id, employee_id, date, quantity, item_price, total_price) values (1, 1, 1, '2020-04-10', 4, 1, 4 );
+insert into sale (item_id, customer_id, employee_id, date, quantity, item_price, total_price) values (1, 2, 1, '2020-04-10', 4, 1, 4 );
+insert into sale (item_id, customer_id, employee_id, date, quantity, item_price, total_price) values (1, 1, 1, '2020-04-10', 4, 1, 4 );
+
+select c.id, c.lname, sum(s.total_price) from customer c, sale s 
+where c.id = s.customer_id
+group by c.lname
+order by sum(s.total_price) DESC
+limit 1
 
 
